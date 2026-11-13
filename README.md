@@ -18,12 +18,17 @@ Each position in a decimal number represents a power of 10.
 
 ### Example
 
-`345`
+```mermaid
+flowchart TD
+  Number["345"]
 
-```plaintext
-3 x 100
-4 x 10
-5 x 1
+  H["100<br>3 × 10² = 300"]
+  T["10<br>4 × 10¹ = 40"]
+  O["1<br>5 × 10⁰ = 5"]
+
+  Number --> H
+  Number --> T
+  Number --> O
 ```
 
 We represent this as **100** *3 times*, **10** *4 times*, and **5** *1 time*.
@@ -38,24 +43,33 @@ A bit (binary digit) is the smallest unit of data in a binary number.
 
 A bit can only contain one of two values, a `0` or a `1`. Each position in a binary number represents a power of 2.
 
-Starting from the right-most position:
+### Converting Base-10 to Base-2
 
-| Position | Value in bits |
-| -------- | ------------- |
-| 1 | 1 |
-| 2 | 2 |
-| 3 | 4 |
-| 4 | 8 |
+To convert decimal to binary, we first find the powers of 2 that make up the number.
+
+Take `13` as an example:
+
+We know this is the formula for base-2:
+
+*a* x $2^n$
+
+```mermaid
+flowchart LR
+EXAMPLE[Base-2 Example:]
+P0[d]
+```
 
 ```mermaid
 flowchart TD
-  Number["345"]
+  Binary["1101"]
 
-  H["100<br>3 × 10² = 300"]
-  T["10<br>4 × 10¹ = 40"]
-  O["1<br>5 × 10⁰ = 5"]
+  B3["1 × 2³ = 8"]
+  B2["1 × 2² = 4"]
+  B1["0 × 2¹ = 0"]
+  B0["1 × 2⁰ = 1"]
 
-  Number --> H
-  Number --> T
-  Number --> O
+  Binary --> B3
+  Binary --> B2
+  Binary --> B1
+  Binary --> B0
 ```
