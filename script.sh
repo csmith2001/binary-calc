@@ -20,7 +20,7 @@ next-place-value() {
 
 get-place() {
   local num=$1
-  local floor="$PLACE_START"
+  local floor=$PLACE_START
 
   for ((places="$floor"; floor < num; floor *= 2)); do
     places="$floor"
@@ -28,28 +28,21 @@ get-place() {
   echo "$places"
 }
 
-# === UNIT TESTS ====================================================
-# next-place-value unit tests
-# This tests if a value passed into it is equal to itself doubled
-# separator
-# printf '%s\n' "*** UNIT TESTING NEXT PLACE VALUE FUNCTION"
+max-place() {
+  local num=$1
+  local start
 
-# for (( start=1; start<=10; start++ )); do
-#   expected=$(( start * 2 ))
-#   actual=$(next-place-value "$start")
+  for (( start=1; start<=num; start++ )); do
+    max_places=$(get-place "$start")
+  done
+  echo "$max_places"
+}
 
-#   if [[ "$actual" == "$expected" ]]; then
-#     echo "PASS!" 
-#     echo "$start -> $actual"
-#     echo
-#   else
-#     echo "FAIL!"
-#     echo "$start expected $expected got $actual"
-#     echo
-#   fi
-# done
+get-binary() {
+  local num=$1
 
-for (( start=1; start<=10; start++ )); do
-  test=$(get-place "$start")
-  echo "num: $start places: $test"
-done
+  test=$(max-place "$num")
+  echo "$test"
+}
+
+get-binary 345
