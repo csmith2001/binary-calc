@@ -20,10 +20,9 @@ next-place-value() {
 
 get-place() {
   local num=$1
-  local floor=1
-  local places="$floor"
+  local floor="$PLACE_START"
 
-  for (( floor=1; floor < num; floor *= 2 )); do
+  for ((places="$floor"; floor < num; floor *= 2)); do
     places="$floor"
   done
   echo "$places"

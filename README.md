@@ -116,8 +116,8 @@ Base-2 conversion:
 This means:
 
 ```text
- 8    4    2    1
 [x]  [x]  [ ]  [x]
+ 8    4    2    1
  1    1    0    1
 ```
 
