@@ -1,5 +1,3 @@
-
-
 def max_power_two(decimal):
   i=1
   while i < decimal:
