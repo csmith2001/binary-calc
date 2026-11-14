@@ -2,15 +2,10 @@
 set -euo pipefail
 trap 'echo "An error has occurred!"; exit 1' ERR
 
-# === CONSTANTS ==================================================================
+# === CONSTANTS ======================================
 TERM_WIDTH=$(tput cols)
 
-# === FUNCTIONS ==================================================================
-separator() {
-  local char="${1:-=}"
-  printf '%*s\n' "$TERM_WIDTH" '' | tr ' ' "$char"
-}
-
+# === FUNCTIONS ======================================
 max_power_two() {
   local decimal_number=$1
   local max_power=1
@@ -20,20 +15,6 @@ max_power_two() {
     max_power="$places"
   done
   echo "$max_power"
-}
-
-get_remainder() {
-  local decimal_number=$1
-  local max_power=$2
-  local remainder
-
-  max_power=$(max_power_two "$decimal_number")
-  if [ "$max_power" -eq 1 ]; then
-    remainder=0
-  else
-    remainder=$(( decimal_number - max_power ))
-  fi
-  echo "$remainder"
 }
 
 convert_to_binary() {
