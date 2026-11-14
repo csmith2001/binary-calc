@@ -2,9 +2,6 @@
 trap 'echo "An error has occurred!"; exit 1' ERR
 set -euo pipefail
 
-# === CONSTANTS ======================================
-TERM_WIDTH=$(tput cols)
-
 # === FUNCTIONS ======================================
 max_power_two() {
   local decimal_number=$1
