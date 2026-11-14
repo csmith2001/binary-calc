@@ -5,7 +5,7 @@ def max_power_two(decimal):
     i*=2
   return max_power
 
-def convert_to_binary(decimal):
+def base10_to_binary(decimal):
   max_power = max_power_two(decimal)
   new_num = decimal
   binary = ""
@@ -19,4 +19,4 @@ def convert_to_binary(decimal):
     max_power/=2
   return binary
 
-print(convert_to_binary(345))
+print(base10_to_binary(345))
