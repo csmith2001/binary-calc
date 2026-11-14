@@ -14,7 +14,7 @@ max_power_two() {
   echo "$max_power"
 }
 
-convert_to_binary() {
+base10_to_binary() {
   local decimal_number=$1
   local max_power
   local new_num
@@ -33,4 +33,4 @@ convert_to_binary() {
   echo "$binary"
 }
 
-convert_to_binary 345
+base10_to_binary 345
