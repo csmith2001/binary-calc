@@ -2,47 +2,57 @@
 set -euo pipefail
 trap 'echo "An error has occurred!"; exit 1' ERR
 
-# === CONSTANTS =====================================================
-PLACE_START=1
+# === CONSTANTS ==================================================================
 TERM_WIDTH=$(tput cols)
 
-# === FUNCTIONS =====================================================
+# === FUNCTIONS ==================================================================
 separator() {
   local char="${1:-=}"
   printf '%*s\n' "$TERM_WIDTH" '' | tr ' ' "$char"
 }
 
-next-place-value() {
-  local num=$1
-  local new_num=$(( num * 2 ))
-  echo "$new_num"
-}
+max_power_two() {
+  local decimal_number=$1
+  local max_power=1
+  local places=1
 
-get-place() {
-  local num=$1
-  local floor=$PLACE_START
-
-  for ((places="$floor"; floor < num; floor *= 2)); do
-    places="$floor"
+  for (( ; places < decimal_number; places *= 2 )); do
+    max_power="$places"
   done
-  echo "$places"
+  echo "$max_power"
 }
 
-max-place() {
-  local num=$1
-  local start
+get_remainder() {
+  local decimal_number=$1
+  local max_power=$2
+  local remainder
 
-  for (( start=1; start<=num; start++ )); do
-    max_places=$(get-place "$start")
+  max_power=$(max_power_two "$decimal_number")
+  if [ "$max_power" -eq 1 ]; then
+    remainder=0
+  else
+    remainder=$(( decimal_number - max_power ))
+  fi
+  echo "$remainder"
+}
+
+convert_to_binary() {
+  local decimal_number=$1
+  local max_power
+  local new_num
+
+  max_power=$(max_power_two "$decimal_number")
+  new_num=$decimal_number
+
+  for (( ; max_power >= 1; max_power /= 2 )); do
+    if (( max_power <= new_num )); then
+      binary+="1"
+      new_num=$(( new_num - max_power ))
+    else
+      binary+="0"
+    fi
   done
-  echo "$max_places"
+  echo "$binary"
 }
 
-get-binary() {
-  local num=$1
-
-  test=$(max-place "$num")
-  echo "$test"
-}
-
-get-binary 345
+convert_to_binary 345
